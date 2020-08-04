@@ -22,7 +22,7 @@ def is_palindrome(str):
     print(compare)
     return compare == string
 
-def rever_integer(num) -> int:
+def reversed_integer(num) -> int:
     res = 0
     while num != 0:
         rem = num % 10
