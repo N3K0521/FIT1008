@@ -18,6 +18,12 @@ def reverse(my_list:list):
         my_list[i] = my_list[length-i-1]
         my_list[length-i-1] = temp
 
+def last(my_list:list):
+    new_list = []
+    for i in range(len(list)-1):
+        new_list.append(list[i])
+        i += 1
+
 my_list = []
 selected_quit = False
 input_line = None
@@ -32,5 +38,7 @@ while not selected_quit:
         reverse(my_list)
     elif command == 3:
         print(my_list)
+    elif command == 4:
+        last(my_list)
     elif command == 4:
         selected_quit = True
