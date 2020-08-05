@@ -1,5 +1,7 @@
 """ Menu to read items into a list, print the list, and reverse it. """
 
+__author__ = "Huixin Wang"
+
 from typing import List, TypeVar #imports some types you may need
 
 T = TypeVar('T') # creates a type variable which you may need
