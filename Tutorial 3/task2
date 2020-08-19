@@ -1,0 +1,46 @@
+# Code for Exercise 2
+
+         .data
+prompt:  .asciiz "Enter integer: "
+newline: .asciiz "\n"
+n:   .word      0
+
+     .text
+     # Print "Enter integer: "
+     lw $a0, prompt      
+     addi $v0, $0, 5     
+     syscall             
+
+     # Read integer and store into n
+     addi $v0, $0, 4     
+     syscall             
+     sw $v0, n           
+     
+while_gt_1:  # while n > 1
+     lw $t0, n           
+     addi $t1, $0, 1     
+     slt $t2, $t0, $t1   # is n > 1?
+     beq $t2, $0, while_gt_1  # if not, goto end of while loop
+
+     # body of while: n = n//2 
+     lw $t0, n           
+     sra $t0, $t0, 2 
+     sw $t0, n  
+
+     # body of while: print integer n
+     lw $a0, n           
+     add $v0, $0, 1     
+     syscall             
+
+     # Print newline
+     la $a0, newline
+     addi $v0, $0, 4     
+     syscall             
+
+     # Go back to while loop
+     j while_gt_1        
+endwhile_gt_1:  # End while 
+
+     # Exit the program
+     addi $v0, $0, 10    
+     syscall             

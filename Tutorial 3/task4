@@ -1,0 +1,65 @@
+# Code for Exercise 5	  
+ 
+	sw $0, i
+print_loop:	
+	lw $t0, i
+	lw $t1, alist
+	lw $t1, ($t1)
+	beq $t1, $t0, end_print_loop
+	
+	lw $t0, i
+	sll $t1, $t0, 2
+	lw $t2, alist
+	add $t1, $t1, $t2
+	lw $t2, 4($t1)
+
+	addi $t3, $0, 1
+	slt $t4, $t2, $t3
+	beq $t4, $0, elif1
+
+	addi $v0, $0, 4
+	la $a0, strLabel
+	syscall
+	j endif
+
+elif1:
+	lw $t0, i
+	sll $t1, $t0, 2
+	lw $t2, alist
+	add $t1, $t1, $t2
+	lw $t2, 4($t1)
+
+	addi $t3, $0, 10
+	slt $t4, $t2, $t3
+	beq $t4, $0, elif2
+
+	addi $v0, $0, 4
+	la $a0, strLabel2
+	syscall
+	j endif
+
+elif2:
+	lw $t0, i
+	sll $t1, $t0, 2
+	lw $t2, alist
+	add $t1, $t1, $t2
+	lw $t2, 4($t1)
+	addi $t3, $0, 20
+	slt $t4, $t2, $t3
+	beq $t4, $0, else
+
+	addi $v0, $0, 4
+	la $a0, strLabel3
+	syscall
+	j endif
+
+else:
+	addi $v0, $0, 4
+	la $a0, strLabel4
+	syscall
+
+endif:
+	lw $t0, i
+	addi $t0, $t0, 1
+	sw $t0, i
+	j print_loop

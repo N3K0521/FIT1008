@@ -1,0 +1,51 @@
+# Code for Exercise 3
+    
+        .data
+prompt1: .asciiz "Enter integer: "
+prompt2: .asciiz "Enter another integer: "
+result:  .asciiz "Result: "
+newline: .asciiz "\n"
+
+x:     .word 0 # x was initialised to 0 in Python
+z:     .word 0 # no initial value provided for z, but use .word for simplicity (and alignment)
+y:     .word 0 # y is a pointer to the array location; we do not yet know its address
+i:     .word 0 # variable i was not initialised in Python either
+       
+       .text
+       # Print "Enter integer: " 
+       la $a0, prompt1   
+       addi $v0, $0, 4   
+       syscall           
+
+       # read z
+       addi $v0, $0, 5
+       syscall
+       sw $v0, z
+
+       
+       CREATE ARRAY AND DO THE WHILE LOOP HERE
+
+       # if z > 0:
+       lw $t0, z
+       slt $t1, $0, $t0    # is z > 0?
+       beq $t1, $0, endif  # if not, go to endif
+
+       # Print "Result: "
+       la $a0, result     
+       addi $v0, $0, 4    
+       syscall            
+
+       # print integer x
+       lw $a0, x          
+       addi $v0, $0, 1    
+       syscall
+
+       # Print "\n"
+       la $a0, newline
+       addi $v0, $0, 4    
+       syscall            
+endif:
+       # Exit the program
+       addi $v0, $0, 10   
+       syscall        
+

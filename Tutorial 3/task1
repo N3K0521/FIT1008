@@ -1,0 +1,30 @@
+# Code for Exercise 1
+
+     . data
+n:   .word 0
+m:   .word 0
+
+     . text
+     addi $v0, $0, 5
+     syscall
+     sw $v0, n 
+
+     addi $v0, $0, 5 
+     syscall
+     sw $v0, m 
+
+     lw $t0, n         
+     lw $t1, m         
+     slt $t0, $t1, $t0 
+     beq $t0, $0, one  
+     
+     lw $a0, n
+     j two             
+
+one: lw $a0, m
+
+two: addi $v0, $0, 1             
+     syscall
+
+     addi $v0, $0, 10    
+     syscall
