@@ -1,0 +1,7 @@
+Question 4:
+1. Initial value of Register PC: 0x00000000
+   The content of PC reffering to: the address of an instruction to be fetched
+2. It's growing steadily with 4
+    e.g.: 0x00400000 -> 0x00400004
+3. Yes.
+4. ma I; aer ;  yll; ojne; gniy; PIM ; \0 \n S; \0 \0 \0 \n

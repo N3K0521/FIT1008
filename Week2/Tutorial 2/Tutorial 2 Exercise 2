@@ -1,0 +1,40 @@
+.data
+integer1: .word 0
+integer2: .word 0
+s: .word 0
+prompt: .asciiz "Enter two integers: \n"
+sumprompt: .asciiz "Sum is "
+newline: .asciiz "\n"
+
+.text
+la $a0, prompt
+addi $v0, $0, 4
+syscall
+
+addi $v0, $0, 5
+syscall
+sw $v0, integer1
+
+addi $v0, $0, 5
+syscall
+sw $v0, integer2
+
+lw $t0, integer1
+lw $t1, integer2
+add $t0, $t0, $t1
+sw $t0, s
+
+la $a0, newline
+addi $v0, $0, 4
+syscall
+
+la $a0, sumprompt
+addi $v0, $0, 4
+syscall
+
+lw $a0, s
+addi $v0, $0, 1
+syscall
+
+addi $v0, $0, 10
+syscall
